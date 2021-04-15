@@ -21,7 +21,7 @@ class CharitiesSupported extends React.Component {
 
   componentDidMount = () => {
     axios
-      .get("https://charity-bay.herokuapp.com//api/charities")
+      .get("https://charity-bay.herokuapp.com/api/charities")
       .then(({ data: { charities } }) => {
         this.setState({ charities: charities, isLoading: false });
       });

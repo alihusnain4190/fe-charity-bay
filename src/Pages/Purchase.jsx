@@ -22,7 +22,7 @@ export default function Purchase(props) {
 
   useEffect(() => {
     axios
-      .get(`https://charity-bay.herokuapp.com//api/items/${props.item_id}`)
+      .get(`https://charity-bay.herokuapp.com/api/items/${props.item_id}`)
       .then(({ data: { item } }) => {
         setItem(item);
         setLoading(false);
@@ -33,10 +33,10 @@ export default function Purchase(props) {
     const {
       data: { user },
     } = await axios.get(
-      `https://charity-bay.herokuapp.com//api/users/user/${currentUser.email}`
+      `https://charity-bay.herokuapp.com/api/users/user/${currentUser.email}`
     );
     await axios.patch(
-      `https://charity-bay.herokuapp.com//api/items/${props.item_id}`,
+      `https://charity-bay.herokuapp.com/api/items/${props.item_id}`,
       { status: "reserved", buyer: user.username }
     );
     item.charity_id === 1

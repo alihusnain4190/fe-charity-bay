@@ -42,11 +42,11 @@ export default function SignUp() {
       const {
         data: { user },
       } = await axios.get(
-        `https://charity-bay.herokuapp.com//api/users/${usernameRef.current.value}`
+        `https://charity-bay.herokuapp.com/api/users/${usernameRef.current.value}`
       );
       if (user.username) throw new Error("Username already exists");
       await signup(emailRef.current.value, passwordRef.current.value);
-      await axios.post("https://charity-bay.herokuapp.com//api/users", {
+      await axios.post("https://charity-bay.herokuapp.com/api/users", {
         username: usernameRef.current.value,
         email: emailRef.current.value,
         first_name: firstNameRef.current.value,
@@ -73,7 +73,7 @@ export default function SignUp() {
       name: firstNameRef.current.value,
       type: "Welcome",
     };
-    axios.post("https://charity-bay.herokuapp.com//api/mail", dataToSubmit);
+    axios.post("https://charity-bay.herokuapp.com/api/mail", dataToSubmit);
   }
 
   return (

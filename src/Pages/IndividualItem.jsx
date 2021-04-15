@@ -21,9 +21,9 @@ class IndividualItem extends Component {
   componentDidMount() {
     return Promise.all([
       axios.get(
-        `https://charity-bay.herokuapp.com//api/items/${this.props.item_id}`
+        `https://charity-bay.herokuapp.com/api/items/${this.props.item_id}`
       ),
-      axios.get("https://charity-bay.herokuapp.com//api/charities"),
+      axios.get("https://charity-bay.herokuapp.com/api/charities"),
     ]).then(
       ([
         {

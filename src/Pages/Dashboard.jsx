@@ -28,22 +28,22 @@ export default function Dashboard() {
     setLoading(true);
     axios
       .get(
-        `https://charity-bay.herokuapp.com//api/users/user/${currentUser.email}`
+        `https://charity-bay.herokuapp.com/api/users/user/${currentUser.email}`
       )
       .then(({ data: { user } }) => {
         if (list === "reserved" || list === "purchased") {
           return axios.get(
-            `https://charity-bay.herokuapp.com//api/items?status=${list}&buyer=${user.username}&p=${page}`
+            `https://charity-bay.herokuapp.com/api/items?status=${list}&buyer=${user.username}&p=${page}`
           );
         }
         if (list === "available") {
           return axios.get(
-            `https://charity-bay.herokuapp.com//api/items?status=${list}&seller_username=${user.username}&p=${page}`
+            `https://charity-bay.herokuapp.com/api/items?status=${list}&seller_username=${user.username}&p=${page}`
           );
         }
         if (list === "sold") {
           return axios.get(
-            `https://charity-bay.herokuapp.com//api/items?status=purchased&seller_username=${user.username}&p=${page}`
+            `https://charity-bay.herokuapp.com/api/items?status=purchased&seller_username=${user.username}&p=${page}`
           );
         }
       })
@@ -56,20 +56,20 @@ export default function Dashboard() {
 
   async function handlePurchase(item_id) {
     await axios.patch(
-      `https://charity-bay.herokuapp.com//api/items/${item_id}`,
+      `https://charity-bay.herokuapp.com/api/items/${item_id}`,
       { status: "purchased" }
     );
   }
 
   async function handleDelete(item) {
     await axios.delete(
-      `https://charity-bay.herokuapp.com//api/items/${item.item_id}`
+      `https://charity-bay.herokuapp.com/api/items/${item.item_id}`
     );
     await axios.delete(
-      `https://charity-bay.herokuapp.com//api/image/${item.thumbnail_img_ref}`
+      `https://charity-bay.herokuapp.com/api/image/${item.thumbnail_img_ref}`
     );
     await axios.delete(
-      `https://charity-bay.herokuapp.com//api/image/${item.fullsize_img_ref}`
+      `https://charity-bay.herokuapp.com/api/image/${item.fullsize_img_ref}`
     );
   }
   function changePage(newPage) {
@@ -79,7 +79,7 @@ export default function Dashboard() {
   function handleMail(item) {
     axios
       .get(
-        `https://charity-bay.herokuapp.com//api/users/${item.seller_username}`
+        `https://charity-bay.herokuapp.com/api/users/${item.seller_username}`
       )
       .then((result) => {
         const sellerEmail = result.data.user.email;
@@ -90,7 +90,7 @@ export default function Dashboard() {
           clientEmail: currentUser.email,
         };
         axios.post(
-          "https://charity-bay.herokuapp.com//api/mail",
+          "https://charity-bay.herokuapp.com/api/mail",
           sellerDataToSubmit
         );
 
@@ -101,7 +101,7 @@ export default function Dashboard() {
           clientEmail: sellerEmail,
         };
         axios.post(
-          "https://charity-bay.herokuapp.com//api/mail",
+          "https://charity-bay.herokuapp.com/api/mail",
           buyerDataToSubmit
         );
       });
