@@ -28,7 +28,7 @@ class LandingPage extends Component {
     const { page } = this.state;
     return axios
       .get(
-        `https://charity-bay-be.herokuapp.com/api/items?p=${page}&status=available`
+        `https://charity-bay.herokuapp.com//api/items?p=${page}&status=available`
       )
       .then(({ data: { items, itemCount } }) => {
         this.setState({ items, itemCount, isLoading: false });
@@ -44,7 +44,7 @@ class LandingPage extends Component {
       prevState.sortBy !== sortBy
     ) {
       return axios
-        .get("https://charity-bay-be.herokuapp.com/api/items", {
+        .get("https://charity-bay.herokuapp.com//api/items", {
           params: {
             p: page,
             order: order,

@@ -1,27 +1,27 @@
-import React from 'react';
-import axios from 'axios';
-import CharityInfo from './CharityInfo';
-import Backdrop from '@material-ui/core/Backdrop';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import { withStyles } from '@material-ui/core/styles';
+import React from "react";
+import axios from "axios";
+import CharityInfo from "./CharityInfo";
+import Backdrop from "@material-ui/core/Backdrop";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import { withStyles } from "@material-ui/core/styles";
 
 const styles = (theme) => ({
   backdrop: {
     zIndex: theme.zIndex.drawer + 1,
-    color: '#fff',
+    color: "#fff",
   },
 });
 
 class CharitiesSupported extends React.Component {
   state = {
     charities: [],
-    charityShowMore: '',
+    charityShowMore: "",
     isLoading: true,
   };
 
   componentDidMount = () => {
     axios
-      .get('https://charity-bay-be.herokuapp.com/api/charities')
+      .get("https://charity-bay.herokuapp.com//api/charities")
       .then(({ data: { charities } }) => {
         this.setState({ charities: charities, isLoading: false });
       });

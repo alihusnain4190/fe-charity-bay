@@ -85,7 +85,7 @@ export default function PostItem() {
       fullsizeForm.append("file", fullsizeFile);
       return Promise.all([
         axios.post(
-          "https://charity-bay-be.herokuapp.com/api/image",
+          "https://charity-bay.herokuapp.com//api/image",
           thumbnailForm,
           {
             headers: {
@@ -94,7 +94,7 @@ export default function PostItem() {
           }
         ),
         axios.post(
-          "https://charity-bay-be.herokuapp.com/api/image",
+          "https://charity-bay.herokuapp.com//api/image",
           fullsizeForm,
           {
             headers: {
@@ -103,14 +103,14 @@ export default function PostItem() {
           }
         ),
         axios.get(
-          `https://charity-bay-be.herokuapp.com/api/users/user/${currentUser.email}`
+          `https://charity-bay.herokuapp.com//api/users/user/${currentUser.email}`
         ),
       ])
         .then(([thumbnailImage, fullsizeImage, user]) => {
           const thumbnail_img_ref = thumbnailImage.data.image.key;
           const fullsize_img_ref = fullsizeImage.data.image.key;
           const seller_username = user.data.user.username;
-          return axios.post("https://charity-bay-be.herokuapp.com/api/items", {
+          return axios.post("https://charity-bay.herokuapp.com//api/items", {
             thumbnail_img_ref,
             fullsize_img_ref,
             seller_username,
